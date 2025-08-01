@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: url("{% static 'img/register.jpg' %}") no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+        }
+
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 30px 40px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            margin-top: 25px;
+            background-color: #3498db;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+
+        .messages {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .messages h3 {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+    <form action="login" method="POST">
+         {% csrf_token %}
+         <label>User Name</label>
+        <input type="text" name="username" placeholder="User Name"><br><br><br>
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Password"><br><br><br><br>
+        <input type="submit" style="color: blue; font-size: medium;background-color: azure;">
+        <div>
+        {% for message in messages %}
+        <h3>{{message}}</h3>
+        {% endfor %}
+        </div>
+    </form>   
+</div> 
+</body>
+</html>
