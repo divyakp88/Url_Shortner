@@ -1,5 +1,5 @@
 from django.shortcuts import render,get_object_or_404,redirect
-from .models import ShortURL,encode_base62
+from .models import ShortURL,encode_base62,generate_shortcode
 from .form import URLForm
 from django.contrib import messages
 import string
@@ -10,11 +10,6 @@ def index(request):
     return render(request,'index.html')
 
 
-def generate_shortcode():
-    while True:
-        code=''.join(random.choices(string.ascii_letters + string.digits, k=6))
-        if not ShortURL.objects.filter(short_code=code).exists():
-            return code
 
 
 def home(request):
@@ -30,7 +25,7 @@ def home(request):
             else:
                 
                 short_obj=ShortURL.objects.create(user=request.user,original_url=url)
-                short_obj.short_code=encode_base62(short_obj.id)
+                short_obj.short_code=generate_shortcode(short_obj.id)
                 short_obj.save()
                 messages.success(request,"Short URL generated Successfully")
                 short_code=short_obj.short_code

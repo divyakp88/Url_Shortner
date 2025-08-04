@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 import string
+import random
 
 # Create your models here.
 base62_str=string.digits+string.ascii_letters
@@ -15,11 +16,18 @@ def encode_base62(num):
             base.append(base62_str[rem])
         return ''.join(reversed(base))    
 
+def generate_shortcode(id):
+    total_length=6
+    base62_id = encode_base62(id)
+    rand_length = total_length - len(base62_id)
+    random_part = ''.join(random.choices(base62_str, k=rand_length))
+    return random_part + base62_id 
+
 
 class ShortURL(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     original_url=models.URLField()
-    short_code=models.CharField(max_length=15,unique=True,blank=True)
+    short_code=models.CharField(max_length=15,unique=True,blank=True,null=True)
     created_at=models.DateTimeField(auto_now_add=True)
 
 class Meta:
