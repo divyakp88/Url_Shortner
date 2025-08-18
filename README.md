@@ -154,3 +154,9 @@ Each short URL code is a unique 6-character string created using the following l
    Each user can shorten the same original URL only once
 
    URLs are user-specific — multiple users can shorten the same site independently
+
+   🙋‍♀️ **Author**
+
+    Divya K.P
+    Python | Django Developer
+    🌍 Based in India
