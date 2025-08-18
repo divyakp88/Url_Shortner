@@ -50,7 +50,7 @@ A secure and user-based URL shortener built with Django and MySQL. This app allo
 1. **Clone the repository:**
 
 ```bash
-git clone https://github.com/your-username/url-shortener.git
+git clone https://github.com/divyakp88/Url_Shortner.git
 cd url-shortener
 ```
 2.**Create and activate a virtual environment:**
